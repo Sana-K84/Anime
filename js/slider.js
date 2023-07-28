@@ -15,10 +15,6 @@ const slider = () => {
             prevEl: '.swiper-button-prev',
         },
 
-        // And if we need scrollbar
-        scrollbar: {
-            el: '.swiper-scrollbar',
-        },
         effect: "fade",
         speed: 1000,
     });
