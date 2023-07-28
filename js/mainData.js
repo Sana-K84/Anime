@@ -1,6 +1,6 @@
 const mainData = () => {
 
-    fetch('./db.json')
+    fetch('https://anime-f9cc3-default-rtdb.firebaseio.com/anime.json')
         .then((response) => {
             return response.json()
         })
