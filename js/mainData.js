@@ -1,5 +1,8 @@
 const mainData = () => {
-
+    const renderAnimeList = (array, ganres) => {
+        console.log(array)
+        console.log(ganres)
+    }
     const renderTopAnime = (array) => {
         const wrapper = document.querySelector('.filter__gallery');
 
@@ -29,10 +32,9 @@ const mainData = () => {
         })
         .then(data => {
             const ganres = new Set;
-
             renderTopAnime(data.sort((a, b) => b.views - a.views).slice(0, 5));
-            console.log(data)
-
+            data.forEach(el => ganres.add(el.ganre))
+            renderAnimeList(data, ganres);
         })
 }
 
