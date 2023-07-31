@@ -1,7 +1,7 @@
 const mainData = () => {
     const renderAnimeList = (array, ganres) => {
-        console.log(array)
-        console.log(ganres)
+        // console.log(array)
+        // console.log(ganres)
     }
     const renderTopAnime = (array) => {
         const wrapper = document.querySelector('.filter__gallery');
