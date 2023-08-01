@@ -1,7 +1,34 @@
 const mainData = () => {
     const renderAnimeList = (array, ganres) => {
+        const wrapper = document.querySelector('.product .col-lg-8');
+        wrapper.innerHTML = '';
+
         // console.log(array)
         // console.log(ganres)
+        ganres.forEach(ganre => {
+            const productBlock = document.createElement('div');
+            const listBlock = document.createElement('div');
+            listBlock.classList.add('row');
+
+            wrapper.append(productBlock);
+            productBlock.insertAdjacentHTML('afterbegin', `                    <div class="trending__product">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <div class="section-title">
+                        <h4>${ganre}</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="btn__all">
+                        <a href="/categories.html" class="primary-btn">View All <span
+                                class="arrow_right"></span></a>
+                    </div>
+                </div>
+            </div>`)
+            productBlock.append(listBlock);
+            wrapper.append(productBlock);
+        })
+
     }
     const renderTopAnime = (array) => {
         const wrapper = document.querySelector('.filter__gallery');
