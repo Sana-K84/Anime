@@ -1,4 +1,19 @@
 const mainData = () => {
+    const renderGanreList = (ganres) => {
+        const dropdownBlock = document.querySelector('.header__menu .dropdown');
+        dropdownBlock.innerHTML = '';
+        ganres.forEach(ganre => {
+            dropdownBlock.insertAdjacentHTML('afterbegin', `
+            <li><a href="./categories.html?ganre=${ganre}">${ganre}</a></li>
+`)
+
+        });
+        console.log(dropdownBlock)
+    }
+
+
+
+
     const renderAnimeList = (array, ganres) => {
         const wrapper = document.querySelector('.product .col-lg-8');
         wrapper.innerHTML = '';
@@ -12,19 +27,19 @@ const mainData = () => {
             listBlock.classList.add('row');
             productBlock.classList.add('mb-5')
             wrapper.append(productBlock);
-            productBlock.insertAdjacentHTML('afterbegin', `                    <div class="trending__product">
-            <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-8">
-                    <div class="section-title">
-                        <h4>${ganre}</h4>
+            productBlock.insertAdjacentHTML('afterbegin', `
+            <div class="trending__product">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="section-title">
+                            <h4>${ganre}</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="btn__all">
-                        <a href="/categories.html" class="primary-btn">View All <span
-                                class="arrow_right"></span></a>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="btn__all">
+                            <a href="/categories.html?ganre=${ganre}" class="primary-btn">View All<span class="arrow_right"></span></a>
+                        </div>
                     </div>
-                </div>
             </div>`);
             list.forEach(item => {
                 const tagsBlock = document.createElement('ul');
@@ -40,8 +55,8 @@ const mainData = () => {
                         <div class="view"><i class="fa fa-eye"></i> ${item.views}</div>
                     </div>
                     <div class="product__item__text">
-${tagsBlock.outerHTML}
-                        <h5><a href="/anime-details.html">${item.title}</a>
+                        ${tagsBlock.outerHTML}
+                        <h5><a href="/anime-details.html?itemId=${item.id}">${item.title}</a>
                         </h5>
                     </div>
                 </div>
@@ -87,6 +102,7 @@ ${tagsBlock.outerHTML}
             renderTopAnime(data.sort((a, b) => b.views - a.views).slice(0, 5));
             data.forEach(el => ganres.add(el.ganre))
             renderAnimeList(data, ganres);
+            renderGanreList(ganres);
         })
 }
 
