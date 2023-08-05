@@ -17,7 +17,7 @@ const categoriesData = () => {
         ganres.forEach(ganre => {
             const productBlock = document.createElement('div');
             const listBlock = document.createElement('div');
-            const list = array.filter(item => item.ganre === ganre);
+            const list = array.filter(item => item.tags.includes(ganre));
             listBlock.classList.add('row');
             productBlock.classList.add('mb-5')
             wrapper.append(productBlock);
@@ -76,13 +76,11 @@ const categoriesData = () => {
                     <div class="view"><i class="fa fa-eye"></i> ${el.views}</div>
                     <h5><a href="/anime-details.html">${el.title}</a></h5>
                 </div>`
-
             )
         });
         wrapper.querySelectorAll('.set-bg').forEach(element => {
             element.style.backgroundImage = `url(${element.dataset.setbg})`;
         });
-
     }
 
 
@@ -91,11 +89,17 @@ const categoriesData = () => {
         .then(response => response.json())
         .then(data => {
             const ganres = new Set;
+            const ganreParams = new URLSearchParams(window.location.search).get('ganre');
 
             data.forEach(el => ganres.add(el.ganre))
 
             renderTopAnime(data.sort((a, b) => b.views - a.views).slice(0, 5));
-            renderAnimeList(data, ganres);
+            if (ganreParams) {
+                renderAnimeList(data, [ganreParams]);
+            } else {
+                renderAnimeList(data, ganres);
+            }
+
             renderGanreList(ganres);
         })
 
