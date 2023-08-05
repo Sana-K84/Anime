@@ -1,4 +1,5 @@
-const mainData = () => {
+const categoriesData = () => {
+    // dropdown menu
     const renderGanreList = (ganres) => {
         const dropdownBlock = document.querySelector('.header__menu .dropdown');
 
@@ -8,14 +9,10 @@ const mainData = () => {
             `)
 
         });
-        console.log(dropdownBlock)
     }
-
-
-
-
+    // список
     const renderAnimeList = (array, ganres) => {
-        const wrapper = document.querySelector('.product .col-lg-8');
+        const wrapper = document.querySelector('.product-page .col-lg-8');
 
         ganres.forEach(ganre => {
             const productBlock = document.createElement('div');
@@ -67,6 +64,7 @@ const mainData = () => {
         })
 
     }
+
     const renderTopAnime = (array) => {
         const wrapper = document.querySelector('.filter__gallery');
 
@@ -74,10 +72,10 @@ const mainData = () => {
             wrapper.insertAdjacentHTML('beforeend',
 
                 `<div class="product__sidebar__view__item set-bg mix day years" data-setbg="${el.image}">
-                                    <div class="ep">${el.rating} /10</div>
-                                    <div class="view"><i class="fa fa-eye"></i> ${el.views}</div>
-                                    <h5><a href="/anime-details.html">${el.title}</a></h5>
-                                </div>`
+                    <div class="ep">${el.rating} /10</div>
+                    <div class="view"><i class="fa fa-eye"></i> ${el.views}</div>
+                    <h5><a href="/anime-details.html">${el.title}</a></h5>
+                </div>`
 
             )
         });
@@ -100,6 +98,6 @@ const mainData = () => {
             renderAnimeList(data, ganres);
             renderGanreList(ganres);
         })
-}
 
-mainData();
+}
+categoriesData();
