@@ -1,5 +1,5 @@
 const detailData = () => {
-
+    const preloder = document.querySelector('.preloder');
     // dropdown menu
     const renderGanreList = (ganres) => {
         const dropdownBlock = document.querySelector('.header__menu .dropdown');
@@ -20,10 +20,15 @@ const detailData = () => {
         const subTitleBlock = document.querySelector('.anime__details__title span');
         const descriptionBlock = document.querySelector('.anime__details__text p');
         const widgetList = document.querySelectorAll('.anime__details__widget ul li');
-        const breadcrumb = document.querySelector('.breadcrumb__links span')
+        const breadcrumb = document.querySelector('.breadcrumb__links span');
         if (animeObj) {
-            imageBlock.style.backgroundImage = `url(${animeObj.image})`;
-            // imageBlock.dataset.setbg = animeObj.image
+            // imageBlock.style.backgroundImage = `url(${animeObj.image})`;
+            imageBlock.dataset.setbg = animeObj.image
+            document.querySelectorAll('.set-bg').forEach(el => {
+                el.style.backgroundImage = `url(${el.dataset.setbg})`
+            })
+
+
 
             viewsBlock.insertAdjacentHTML('beforeend', `
             <i class="fa fa-eye"></i> ${animeObj.views}
@@ -46,11 +51,17 @@ const detailData = () => {
             <span>Genre:</span>${animeObj.tags.join(', ')}
             `);
             breadcrumb.textContent = animeObj.ganre
+
+
+            //setTimeout(() => 
+            preloder.classList.remove('active')
+            //, 500);
+            // отключаем preloder когда получили все данные, клас active уже в верстке
+
         } else {
             console.log('аниме отсутствует')
         }
     }
-
 
     fetch('https://anime-f9cc3-default-rtdb.firebaseio.com/anime.json')
         .then(response => response.json())
