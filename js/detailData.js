@@ -28,8 +28,6 @@ const detailData = () => {
                 el.style.backgroundImage = `url(${el.dataset.setbg})`
             })
 
-
-
             viewsBlock.insertAdjacentHTML('beforeend', `
             <i class="fa fa-eye"></i> ${animeObj.views}
             `)

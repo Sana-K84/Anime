@@ -13,7 +13,7 @@ const modal = () => {
         wrapper.innerHTML = '';
         items.forEach(el => {
             wrapper.insertAdjacentHTML('afterbegin', `
-            <a class="pt-2" href="/anime-details.html" target="_blank">${el.title}</a>
+            <a class="pt-2" href="/anime-details.html?itemId=${el.id}" target="_blank">${el.title}</a>
             `
             )
         })
@@ -38,20 +38,18 @@ const modal = () => {
 
 
     modalBtn.addEventListener('click', () => {
-        // modal.style.display = 'block'
         modal.classList.add('active')
-    })
+    });
 
     modalClose.addEventListener('click', () => {
-        // modal.style.display = 'none'
         modal.classList.remove('active')
         searchInput.value = '';
         wrapper.innerHTML = '';
-    })
+    });
 
     searchInput.addEventListener('input', (ev) => {
         searchFunc(ev.target.value)
-    })
+    });
 }
 
 modal();

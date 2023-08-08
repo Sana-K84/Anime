@@ -46,18 +46,19 @@ const mainData = () => {
 
                 listBlock.insertAdjacentHTML('beforeend', `
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="${item.image}">
-                        <div class="ep">${item.rating} / 10</div>
-                        <div class="view"><i class="fa fa-eye"></i> ${item.views}</div>
+                    <div class="product__item">
+                        <a href="/anime-details.html?itemId=${item.id}">
+                            <div class="product__item__pic set-bg" data-setbg="${item.image}">
+                                <div class="ep">${item.rating} / 10</div>
+                                <div class="view"><i class="fa fa-eye"></i> ${item.views}</div>
+                            </div>
+                            <div class="product__item__text">
+                                ${tagsBlock.outerHTML}
+                                <h5>${item.title}</h5>
+                            </div>
+                        </a>
                     </div>
-                    <div class="product__item__text">
-                        ${tagsBlock.outerHTML}
-                        <h5><a href="/anime-details.html?itemId=${item.id}">${item.title}</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>`)
+                </div>`)
             })
             productBlock.append(listBlock);
             wrapper.append(productBlock);
@@ -73,11 +74,15 @@ const mainData = () => {
         array.forEach(el => {
             wrapper.insertAdjacentHTML('beforeend',
 
-                `<div class="product__sidebar__view__item set-bg mix day years" data-setbg="${el.image}">
-                                    <div class="ep">${el.rating} /10</div>
-                                    <div class="view"><i class="fa fa-eye"></i> ${el.views}</div>
-                                    <h5><a href="/anime-details.html">${el.title}</a></h5>
-                                </div>`
+                `
+                <a href="/anime-details.html?itemId=${el.id}">
+                    <div class="product__sidebar__view__item set-bg mix day years" data-setbg="${el.image}">
+                        <div class="ep">${el.rating} /10</div>
+                        <div class="view"><i class="fa fa-eye"></i> ${el.views}</div>
+                        <h5>${el.title}</h5>
+                    </div>
+                </a>
+                `
 
             )
         });
